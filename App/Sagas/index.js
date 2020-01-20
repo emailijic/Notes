@@ -2,7 +2,8 @@ import { takeLatest, all } from 'redux-saga/effects'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
-
+import { NotesTypes } from '../Redux/NotesRedux'
+import { saveNote } from './NotesSagas'
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux'
@@ -27,6 +28,8 @@ export default function * root () {
     takeLatest(StartupTypes.STARTUP, startup),
 
     // some sagas receive extra parameters in addition to an action
-    takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
+    takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
+    takeLatest(NotesTypes.SAVE_NOTE_REQUEST,saveNote)
+    
   ])
 }

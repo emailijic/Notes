@@ -1,16 +1,19 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
-import LaunchScreen from '../Containers/LaunchScreen'
+import NotesScreen from '../Containers/NotesScreen'
+import NotesFormScreen from '../Containers/NotesFormScreen'
 
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
-  LaunchScreen: { screen: LaunchScreen }
+  NotesScreen: { screen: NotesScreen },
+  NotesFormScreen: { screen: NotesFormScreen }
 }, {
   // Default config for all screens
   headerMode: 'none',
-  initialRouteName: 'LaunchScreen',
+  initialRouteName: 'NotesScreen',
+  // initialRouteName: 'NotesFormScreen',
   navigationOptions: {
     headerStyle: styles.header
   }
