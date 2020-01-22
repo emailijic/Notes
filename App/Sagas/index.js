@@ -3,7 +3,7 @@ import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
 import { NotesTypes } from '../Redux/NotesRedux'
-import { saveNote } from './NotesSagas'
+import { saveNote, getNotes } from './NotesSagas'
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux'
@@ -29,7 +29,8 @@ export default function * root () {
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
-    takeLatest(NotesTypes.SAVE_NOTE_REQUEST,saveNote)
+    takeLatest(NotesTypes.SAVE_NOTE_REQUEST,saveNote),
+    takeLatest(NotesTypes.GET_NOTES_REQUEST,getNotes)
     
   ])
 }
