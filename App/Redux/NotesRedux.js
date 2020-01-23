@@ -8,7 +8,9 @@ const {Types, Creators}=createActions({
 
   getNotesRequest: [],
   getNotesSuccess: ['data'],
-  getNotesFailure:[]
+  getNotesFailure:[],
+
+  changeScreenRequest: []
 
 })
 
@@ -18,7 +20,8 @@ export const NotesTypes = Types
 export const INITIAL_STATE=Immutable({
   noteSaveFetching: false,
   notesGetFetching: false,
-  notes: []
+  notes: [],
+  changeScreenFetching:false,
 })
 
 export const NotesSelector = {
@@ -29,23 +32,25 @@ export const NotesSelector = {
 const saveNoteRequest = (state, { noteId,noteText }) =>{
   return state.merge({noteSaveFetching: true})
 }
-const saveNoteSuccess = (state) =>{
+const saveNoteSuccess = (state) => {
   return state.merge({noteSaveFetching:false})
 }
-const saveNoteFailure=(state) =>{
+const saveNoteFailure=(state) => {
   return state.merge({noteSaveFetching:false})
 }
 
-const getNotesRequest = (state) =>{
+const getNotesRequest = (state) => {
   return state.merge({notesGetFetching: true})
 }
-const getNotesSuccess = (state, { data }) =>{
+const getNotesSuccess = (state, { data }) => {
   return state.merge({notesGetFetching: false, notes: data})
 }
-const getNotesFailure = (state) =>{
+const getNotesFailure = (state) => {
   return state.merge({notesGetFetching: false})
 }
-
+const changeScreenRequest = (state) => {
+  return state.merge({changeScreenFetching: true})
+}
 export const reducer=createReducer(INITIAL_STATE,{
   [Types.SAVE_NOTE_REQUEST]: saveNoteRequest,
   [Types.SAVE_NOTE_SUCCESS]: saveNoteSuccess,
@@ -53,6 +58,8 @@ export const reducer=createReducer(INITIAL_STATE,{
 
   [Types.GET_NOTES_REQUEST]: getNotesRequest,
   [Types.GET_NOTES_SUCCESS]: getNotesSuccess,
-  [Types.GET_NOTES_FAILURE]: getNotesFailure
+  [Types.GET_NOTES_FAILURE]: getNotesFailure,
+
+  [Types.CHANGE_SCREEN_REQUEST]: changeScreenRequest,
 
 })
